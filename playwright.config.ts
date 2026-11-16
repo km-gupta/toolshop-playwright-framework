@@ -28,7 +28,7 @@ export default defineConfig({
   use: {
     /* Base URL*/
     baseURL: 'https://automationexercise.com',
-    headless: true,
+    headless: false,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     
