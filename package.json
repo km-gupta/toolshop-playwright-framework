@@ -1,0 +1,21 @@
+{
+  "name": "automationexercise-playwright-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript framework for UI and API testing of automationexercise.com",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:chrome": "playwright test --project=chromium",
+    "report": "playwright show-report"
+  },
+  "keywords": ["playwright", "typescript", "automation", "api-testing"],
+  "author": "Krishna",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6"
+  }
+}
