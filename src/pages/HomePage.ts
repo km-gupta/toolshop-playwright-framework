@@ -2,22 +2,22 @@ import { Page, Locator } from '@playwright/test';
 
 export class HomePage {
   readonly page: Page;
-  readonly signupLoginLink: Locator;
-  readonly productsLink: Locator;
-  readonly cartLink: Locator;
+  readonly signInLink: Locator;
+  readonly productCards: Locator;
+  readonly productNames: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.signupLoginLink = page.getByRole('link', { name: 'Signup / Login' });
-    this.productsLink = page.getByRole('link', { name: 'Products' });
-    this.cartLink = page.getByRole('link', { name: 'Cart' });
+    this.signInLink = page.getByTestId('nav-sign-in');
+    this.productCards = page.locator('a.card');
+    this.productNames = page.getByTestId('product-name');
   }
 
   async goto() {
     await this.page.goto('/');
   }
 
-  async clickSignupLogin() {
-    await this.signupLoginLink.click();
+  async openSignIn() {
+    await this.signInLink.click();
   }
 }
