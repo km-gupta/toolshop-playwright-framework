@@ -5,12 +5,20 @@
   "description": "Playwright + TypeScript framework for UI and API testing of Practice Software Testing (Toolshop)",
   "scripts": {
     "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:api": "playwright test --grep @api",
+    "test:ui": "playwright test --grep @ui",
     "test:headed": "playwright test --headed",
-    "test:ui": "playwright test --ui",
+    "test:pw-ui": "playwright test --ui",
     "test:chrome": "playwright test --project=chromium",
     "report": "playwright show-report"
   },
-  "keywords": ["playwright", "typescript", "automation", "api-testing"],
+  "keywords": [
+    "playwright",
+    "typescript",
+    "automation",
+    "api-testing"
+  ],
   "author": "Krishna",
   "license": "ISC",
   "type": "commonjs",

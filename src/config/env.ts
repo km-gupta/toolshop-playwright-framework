@@ -6,6 +6,6 @@ export const DEMO_USER = {
 };
 
 export const WRONG_USER = {
-  email: "wrongemail@domain.com",
+  email: "not-a-user@example.com",
   password: "wrong_password",
 };
