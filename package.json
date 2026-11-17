@@ -1,8 +1,8 @@
 {
-  "name": "automationexercise-playwright-framework",
+  "name": "toolshop-playwright-framework",
   "version": "1.0.0",
   "private": true,
-  "description": "Playwright + TypeScript framework for UI and API testing of automationexercise.com",
+  "description": "Playwright + TypeScript framework for UI and API testing of Practice Software Testing (Toolshop)",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",

@@ -14,6 +14,8 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   timeout: 30_000,
+  expect: { timeout: 10_000 },
+
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -23,15 +25,16 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use.*/
-  reporter: [['list'],['html', {open: 'never'}]],
+  reporter: [['list'], ['html', { open: 'never' }]],
   /* Shared settings for all the projects below.*/
   use: {
     /* Base URL*/
-    baseURL: 'https://automationexercise.com',
-    headless: false,
+    baseURL: 'https://practicesoftwaretesting.com',
+    // navigationTimeout: 30_000,
+    headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    
+    testIdAttribute: 'data-test',
     /* Collect trace when retrying the failed test.*/
     trace: 'on-first-retry',
   },
@@ -42,6 +45,10 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    // },
 
     // {
     //   name: 'firefox',
