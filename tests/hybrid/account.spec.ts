@@ -1,12 +1,10 @@
 import { UsersApi } from '../../src/api/UsersApi';
-import { DEMO_USER } from '../../src/config/env';
 import { test, expect } from '../../src/fixtures/base.fixture';
 
-test.describe('', { tag: ['@hybrid', '@regression'] }, () => {
-    test('logged-in user can open the account page', async ({ page, request }) => {
-        const usersApi = new UsersApi(request);
+test.describe('Account page', { tag: ['@hybrid', '@regression'] }, () => {
+    test('logged-in user can open the account page', async ({ page, usersApi, registeredUser }) => {
 
-        const res = await usersApi.login(DEMO_USER.email, DEMO_USER.password);
+        const res = await usersApi.login(registeredUser.email, registeredUser.password);
         expect(res.status()).toBe(200);
         const { access_token } = await res.json();
 
