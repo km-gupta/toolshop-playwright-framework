@@ -13,7 +13,9 @@
     "test:chrome": "playwright test --project=chromium",
     "report": "playwright show-report",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "playwright",
@@ -25,9 +27,13 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.65.1",
     "@types/node": "^26.6.6",
     "dotenv": "^18.0.10",
-    "prettier": "^3.10.1"
+    "eslint": "^10.15.0",
+    "eslint-plugin-playwright": "^2.12.2",
+    "prettier": "^3.10.1",
+    "typescript-eslint": "^8.73.0"
   }
 }

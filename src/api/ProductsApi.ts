@@ -1,4 +1,4 @@
-import { APIRequestContext, request } from '@playwright/test';
+import { APIRequestContext} from '@playwright/test';
 import { API_URL } from '../config/env';
 
 export class ProductsApi {
