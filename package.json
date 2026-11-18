@@ -4,7 +4,8 @@
   "private": true,
   "description": "Playwright + TypeScript framework for UI and API testing of Practice Software Testing (Toolshop)",
   "scripts": {
-    "test": "playwright test",
+    "test": "playwright test --project=chromium",
+    "test:all-browsers": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
     "test:api": "playwright test --grep @api",
     "test:ui": "playwright test --grep @ui",
