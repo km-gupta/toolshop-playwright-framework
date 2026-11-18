@@ -12,10 +12,9 @@ test.describe('product list', { tag: ['@api', '@smoke'] }, () => {
     expect(body.data.length).toBeGreaterThan(0);
 
     expect(body.data[0]).toMatchObject({
-      "id": expect.any(String),
-      "name": expect.any(String),
-      "price": expect.any(Number)
-    })
+      id: expect.any(String),
+      name: expect.any(String),
+      price: expect.any(Number),
+    });
   });
-})
-
+});

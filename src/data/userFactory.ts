@@ -1,8 +1,8 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID } from 'node:crypto';
 
 export function createUser() {
   const unique = randomUUID().slice(0, 8);
-  
+
   return {
     first_name: 'Test',
     last_name: 'User',

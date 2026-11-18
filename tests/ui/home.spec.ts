@@ -1,5 +1,4 @@
-import { test, expect } from "../../src/fixtures/base.fixture";
-import { HomePage } from '../../src/pages/HomePage';
+import { test, expect } from '../../src/fixtures/base.fixture';
 
 test.describe('home page', { tag: ['@ui', '@smoke'] }, () => {
   test('home page shows products and opens sign in', async ({ page, homePage }) => {
@@ -9,4 +8,4 @@ test.describe('home page', { tag: ['@ui', '@smoke'] }, () => {
     await homePage.openSignIn();
     await expect(page).toHaveURL(/\/auth\/login/);
   });
-})
+});
