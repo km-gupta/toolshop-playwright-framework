@@ -11,7 +11,9 @@
     "test:headed": "playwright test --headed",
     "test:pw-ui": "playwright test --ui",
     "test:chrome": "playwright test --project=chromium",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [
     "playwright",
@@ -24,6 +26,8 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.65.1",
-    "@types/node": "^26.6.6"
+    "@types/node": "^26.6.6",
+    "dotenv": "^18.0.10",
+    "prettier": "^3.10.1"
   }
 }
