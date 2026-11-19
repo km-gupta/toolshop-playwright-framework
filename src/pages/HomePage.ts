@@ -13,11 +13,11 @@ export class HomePage {
     this.productNames = page.getByTestId('product-name');
   }
 
-  async goto() {
+  async goto(): Promise<void> {
     await this.page.goto('/');
   }
 
-  async openSignIn() {
+  async openSignIn(): Promise<void> {
     await this.signInLink.click();
   }
 }

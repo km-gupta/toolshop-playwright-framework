@@ -1,26 +1,46 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, Page } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { UsersApi } from '../api/UsersApi';
 import { createUser, RegisteredUser } from '../data/userFactory';
 import { ADMIN_USER } from '../config/env';
+import { AccountPage } from '../pages/AccountPage';
 
-type Page = {
+const AUTH_TOKEN_KEY = 'auth-token';
+
+type Fixtures = {
+  loggedInPage: Page;
   loginPage: LoginPage;
   homePage: HomePage;
+  accountPage: AccountPage;
   usersApi: UsersApi;
   registeredUser: RegisteredUser;
 };
 
-export const test = base.extend<Page>({
+export const test = base.extend<Fixtures>({
   homePage: async ({ page }, use) => {
     await use(new HomePage(page));
   },
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
+  accountPage: async ({ page }, use) => {
+    await use(new AccountPage(page));
+  },
   usersApi: async ({ request }, use) => {
     await use(new UsersApi(request));
+  },
+  loggedInPage: async ({ page, usersApi, registeredUser }, use) => {
+    const res = await usersApi.login(registeredUser.email, registeredUser.password);
+    expect(res.status()).toBe(200);
+    const { access_token } = (await res.json()) as { access_token: string };
+
+    await page.addInitScript(
+      ([key, value]) => localStorage.setItem(key, value),
+      [AUTH_TOKEN_KEY, access_token],
+    );
+
+    await use(page);
   },
   registeredUser: async ({ usersApi }, use) => {
     const user = createUser();
