@@ -24,7 +24,12 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'npm test'
+        withCredentials([
+          string(credentialsId: 'admin-email', variable: 'ADMIN_EMAIL'),
+          string(credentialsId: 'admin-password', variable: 'ADMIN_PASSWORD')
+        ]) {
+          sh 'npm test'
+        }
       }
     }
   }
@@ -35,3 +40,4 @@ pipeline {
     }
   }
 }
+
