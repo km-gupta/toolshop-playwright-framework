@@ -38,6 +38,9 @@ jobs:
 
       - name: Run tests
         run: npm test
+        env:
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Upload reports
         if: always()

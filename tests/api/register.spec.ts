@@ -1,13 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../src/fixtures/base.fixture';
 import { createUser } from '../../src/data/userFactory';
-import { UsersApi } from '../../src/api/UsersApi';
 
 test.describe('New user registration', { tag: ['@api', '@regression'] }, () => {
-  test('registers a new user who can then log in', async ({ request }) => {
-    const usersApi = new UsersApi(request);
+  test('registers a new user who can then log in', async ({ usersApi }) => {
     const newUser = createUser();
 
     const registerRes = await usersApi.register(newUser);
+
     expect(registerRes.status()).toBe(201);
 
     const loginRes = await usersApi.login(newUser.email, newUser.password);

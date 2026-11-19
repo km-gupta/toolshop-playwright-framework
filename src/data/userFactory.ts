@@ -22,3 +22,5 @@ export function createUser() {
 }
 
 export type NewUser = ReturnType<typeof createUser>;
+
+export type RegisteredUser = NewUser & { id: string };

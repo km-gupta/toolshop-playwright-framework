@@ -1,4 +1,4 @@
-import { APIRequestContext } from '@playwright/test';
+import { APIRequestContext, expect } from '@playwright/test';
 import { API_URL } from '../config/env';
 import { NewUser } from '../data/userFactory';
 
@@ -11,5 +11,12 @@ export class UsersApi {
 
   async register(user: NewUser) {
     return this.request.post(`${API_URL}/users/register`, { data: user });
+  }
+
+  async deleteUser(id: string, adminToken: string): Promise<void> {
+    const response = await this.request.delete(`${API_URL}/users/${id}`, {
+      headers: { Authorization: `Bearer ${adminToken}` },
+    });
+    expect(response.status()).toBe(204);
   }
 }
