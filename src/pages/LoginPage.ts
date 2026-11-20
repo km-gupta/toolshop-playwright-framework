@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 
 export class LoginPage {
   readonly page: Page;
@@ -23,5 +23,9 @@ export class LoginPage {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
+  }
+
+  async expectNotLogin(): Promise<void> {
+    await expect(this.loginButton).toBeHidden();
   }
 }

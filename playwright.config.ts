@@ -35,18 +35,39 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+      teardown: 'cleanup',
+    },
+    {
+      name: 'cleanup',
+      testMatch: /.*\.teardown\.ts/,
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: [/.*\.setup\.ts/, /.*\.auth\.spec\.ts/, /.*\.teardown\.ts/],
+    },
+    {
+      name: 'chromium-auth',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+      testMatch: /.*\.auth\.spec\.ts/,
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testIgnore: [/.*\.auth\.spec\.ts/, /.*\.teardown\.ts/],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testIgnore: [/.*\.auth\.spec\.ts/, /.*\.teardown\.ts/],
     },
   ],
 });

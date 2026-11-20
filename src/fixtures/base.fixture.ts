@@ -5,11 +5,10 @@ import { UsersApi } from '../api/UsersApi';
 import { createUser, RegisteredUser } from '../data/userFactory';
 import { ADMIN_USER } from '../config/env';
 import { AccountPage } from '../pages/AccountPage';
-
-const AUTH_TOKEN_KEY = 'auth-token';
+import { AUTH_TOKEN_KEY } from '../config/constants';
 
 type Fixtures = {
-  loggedInPage: Page;
+  authenticatedPage: Page;
   loginPage: LoginPage;
   homePage: HomePage;
   accountPage: AccountPage;
@@ -30,7 +29,7 @@ export const test = base.extend<Fixtures>({
   usersApi: async ({ request }, use) => {
     await use(new UsersApi(request));
   },
-  loggedInPage: async ({ page, usersApi, registeredUser }, use) => {
+  authenticatedPage: async ({ page, usersApi, registeredUser }, use) => {
     const res = await usersApi.login(registeredUser.email, registeredUser.password);
     expect(res.status()).toBe(200);
     const { access_token } = (await res.json()) as { access_token: string };
@@ -39,7 +38,6 @@ export const test = base.extend<Fixtures>({
       ([key, value]) => localStorage.setItem(key, value),
       [AUTH_TOKEN_KEY, access_token],
     );
-
     await use(page);
   },
   registeredUser: async ({ usersApi }, use) => {
