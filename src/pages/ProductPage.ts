@@ -22,4 +22,7 @@ export class ProductPage {
   async expectCartQuantity(quantity: number): Promise<void> {
     await expect(this.cartQuantity).toHaveText(String(quantity));
   }
+  async openCart(): Promise<void> {
+    await this.cartIcon.click();
+  }
 }

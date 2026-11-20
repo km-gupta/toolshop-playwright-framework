@@ -7,6 +7,7 @@ import { ADMIN_USER } from '../config/env';
 import { AccountPage } from '../pages/AccountPage';
 import { AUTH_TOKEN_KEY } from '../config/constants';
 import { ProductPage } from '../pages/ProductPage';
+import { CartPage } from '../pages/CartPage';
 
 type Fixtures = {
   authenticatedPage: Page;
@@ -14,6 +15,7 @@ type Fixtures = {
   homePage: HomePage;
   accountPage: AccountPage;
   productPage: ProductPage;
+  cartPage: CartPage;
   usersApi: UsersApi;
   registeredUser: RegisteredUser;
 };
@@ -30,6 +32,9 @@ export const test = base.extend<Fixtures>({
   },
   productPage: async ({ page }, use) => {
     await use(new ProductPage(page));
+  },
+  cartPage: async ({ page }, use) => {
+    await use(new CartPage(page));
   },
   usersApi: async ({ request }, use) => {
     await use(new UsersApi(request));
