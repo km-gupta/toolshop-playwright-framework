@@ -20,4 +20,8 @@ export class HomePage {
   async openSignIn(): Promise<void> {
     await this.signInLink.click();
   }
+
+  async openProduct(name: string): Promise<void> {
+    await this.productNames.getByText(name, { exact: true }).click();
+  }
 }

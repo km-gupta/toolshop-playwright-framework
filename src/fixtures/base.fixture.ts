@@ -6,12 +6,14 @@ import { createUser, RegisteredUser } from '../data/userFactory';
 import { ADMIN_USER } from '../config/env';
 import { AccountPage } from '../pages/AccountPage';
 import { AUTH_TOKEN_KEY } from '../config/constants';
+import { ProductPage } from '../pages/ProductPage';
 
 type Fixtures = {
   authenticatedPage: Page;
   loginPage: LoginPage;
   homePage: HomePage;
   accountPage: AccountPage;
+  productPage: ProductPage;
   usersApi: UsersApi;
   registeredUser: RegisteredUser;
 };
@@ -25,6 +27,9 @@ export const test = base.extend<Fixtures>({
   },
   accountPage: async ({ page }, use) => {
     await use(new AccountPage(page));
+  },
+  productPage: async ({ page }, use) => {
+    await use(new ProductPage(page));
   },
   usersApi: async ({ request }, use) => {
     await use(new UsersApi(request));
